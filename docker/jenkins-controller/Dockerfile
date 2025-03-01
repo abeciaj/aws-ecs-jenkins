@@ -1,4 +1,6 @@
-FROM --platform=linux/amd64 jenkins/jenkins:lts-jdk11
+# FROM --platform=linux/amd64 jenkins/jenkins:2.492.1-jdk17 # Latest Jenkins as of Feb 23, many plugins are not compatible
+FROM --platform=linux/amd64 jenkins/jenkins:2.462.3-jdk17
+
 
 USER root
 
@@ -21,7 +23,7 @@ RUN mv terraform /usr/local/bin/
 
 # copy the list of plugins to install
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
-RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt --verbose
+RUN jenkins-plugin-cli -f /usr/share/jenkins/ref/plugins.txt
 
 # disable the setup wizard
 ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
@@ -35,4 +37,7 @@ ENV CASC_JENKINS_CONFIG /usr/share/jenkins/ref/jenkins.yaml
 COPY initialConfig.groovy /usr/share/jenkins/ref/init.groovy.d/initialConfigs.groovy
 
 # create a sample job via XML
-COPY job.xml /usr/share/jenkins/ref/jobs/serverless-jenkins-on-ecs/config.xml
+COPY job.xml /usr/share/jenkins/ref/jobs/test-job1/config.xml
+
+# create a sample job via XML
+COPY job.xml /usr/share/jenkins/ref/jobs/test-job2/config.xml

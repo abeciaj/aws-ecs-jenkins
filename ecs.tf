@@ -15,7 +15,7 @@ resource "aws_ecs_task_definition" "this" {
   family = var.application_name
   container_definitions = templatefile("${path.module}/container_definition.tftpl", {
     container_name          = var.jenkins_controller_identifier,
-    container_image         = "920373027066.dkr.ecr.us-east-2.amazonaws.com/serverless-jenkins-on-ecs:jenkins-controller",
+    container_image         = "920373027066.dkr.ecr.us-east-2.amazonaws.com/serverless-jenkins-on-ecs:jenkins-controller-new",
     jenkins_controller_port = var.jenkins_controller_port
     jenkins_agent_port      = var.jenkins_agent_port
     source_volume           = "home",
@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "this" {
     jenkins_controller_agent_tunnel = "${var.jenkins_controller_identifier}.${var.application_name}:${var.jenkins_agent_port}",
     ecs_execution_role_arn          = aws_iam_role.execution.arn,
     ecs_agent_task_role_arn         = aws_iam_role.agent.arn,
-    jenkins_agent_image             = "920373027066.dkr.ecr.us-east-2.amazonaws.com/serverless-jenkins-on-ecs:jenkins-agent",
+    jenkins_agent_image             = "920373027066.dkr.ecr.us-east-2.amazonaws.com/serverless-jenkins-on-ecs:jenkins-agent-new",
     jenkins_agent_security_group    = aws_security_group.ecs_jenkins_agent.id,
     jenkins_agent_subnet_ids        = join(",", local.private_subnet_ids),
     }
@@ -145,7 +145,8 @@ data "aws_iam_policy_document" "ecs_access" {
       "ecs:DescribeContainerInstances",
       "ecs:DescribeTaskDefinition",
       "ecs:DescribeClusters",
-      "ecs:ListTagsForResource"
+      "ecs:ListTagsForResource",
+      "ecs:TagResource"
     ]
     resources = [
       "*"

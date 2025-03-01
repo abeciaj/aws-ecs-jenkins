@@ -1,8 +1,12 @@
-build-timeout:1.28
-ws-cleanup:0.44
-workflow-aggregator:596.v8c21c963d92d
-git:5.0.2
-github:1.37.1
-amazon-ecs:1.49
+# Latest as of Feb 23 jenkins:2.462.3
+amazon-ecs:1.49 # latest
+blueocean:1.27.16 # latest
+build-timeout:1.30 # latest
+cloudbees-bitbucket-branch-source:909.v200b_56ca_b_2fc # Not latest 
+configuration-as-code:1850.va_a_8c31d3158b_ # deps git plugin
+git:5.5.2 # deps
+github:1.39.0 # deps
 terraform:1.0.10
-configuration-as-code:1836.vccda_4a_122a_a_e
+workflow-aggregator:600.vb_57cdd26fdd7 # latest
+ws-cleanup:0.47 # .48 latest
+# Folders Plugin 6.955.v81e2a_35c08d3 

@@ -1,0 +1,32 @@
+jenkins:
+  systemMessage: "Jenkins configured as code"
+  numExecutors: 2
+
+jobs:
+  - script: >
+      folder('test-folder') {
+        displayName('Test Folder')
+        description('Folder created programmatically using JCasC')
+      }
+
+      pipelineJob('test-folder/test-job') {
+        definition {
+          cps {
+            script('''
+              pipeline {
+                agent {
+                  label 'agent'
+                }
+                stages {
+                  stage('Test') {
+                    steps {
+                      echo 'This is a test pipeline'
+                    }
+                  }
+                }
+              }
+            ''')
+            sandbox()
+          }
+        }
+      }

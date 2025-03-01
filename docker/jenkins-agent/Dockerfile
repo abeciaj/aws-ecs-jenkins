@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 jenkins/inbound-agent:4.11-1-alpine-jdk11
+FROM --platform=linux/amd64 jenkins/inbound-agent:3261.v9c670a_4748a_9-8-alpine-jdk11
 
 USER root
 
