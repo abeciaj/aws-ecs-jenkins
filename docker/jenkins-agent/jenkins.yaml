@@ -9,12 +9,12 @@ jenkins:
 
 jobs:
   - script: |
-      folder('test-folder') {
-        displayName('Test Folder')
+      folder('test-folder1') {
+        displayName('Test Folder1')
         description('Folder created programmatically using JCasC')
       }
 
-      pipelineJob('test-folder/test-job') {
+      pipelineJob('test-folder1/test-job') {
         definition {
           cps {
             script('''
