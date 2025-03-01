@@ -2,10 +2,10 @@ jenkins:
   systemMessage: "Jenkins configured as code"
   numExecutors: 2
 
-  authorizationStrategy:
-    loggedInUsersCanDoAnything: {}
+  authorizationStrategy: "loggedInUsersCanDoAnything"
   securityRealm:
-    local: {}
+    local:
+      allowsSignup: false  # Correct indentation
 
 jobs:
   - script: |
