@@ -2,11 +2,10 @@ jenkins:
   systemMessage: "Jenkins configured as code"
   numExecutors: 2
 
-  security:
-    global:
-      authorizationStrategy: "loggedInUsersCanDoAnything"
-      allowAnonymousRead: false
-    realm: "local"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything: {}
+  securityRealm:
+    local: {}
 
 jobs:
   - script: |
@@ -20,9 +19,7 @@ jobs:
           cps {
             script('''
               pipeline {
-                agent {
-                  label 'agent'
-                }
+                agent any
                 stages {
                   stage('Test') {
                     steps {
