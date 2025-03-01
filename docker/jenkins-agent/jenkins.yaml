@@ -8,7 +8,7 @@ jenkins:
       allowsSignup: false  # Correct indentation
 
 jobs:
-  - script: |
+  - script: >
       folder('test-folder1') {
         displayName('Test Folder1')
         description('Folder created programmatically using JCasC')
